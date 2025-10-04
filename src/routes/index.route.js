@@ -1,0 +1,52 @@
+const express = require('express')
+const router = express.Router()
+const {authMiddleware, isAdmin} = require('../middlewares/authMiddleware')
+
+//routes imports
+const OTPRoute = require('./employers/OTP.route')
+    //jobseekers
+const jobseekersRoute = require('./jobseekers/jobseekers.route')
+
+const applicationsRoute = require('./jobseekers/applications.route')
+
+    //employers
+const employersRoute = require('./employers/employers.route')
+const imagekitRoute = require('./employers/imagekit.route')
+    //job listings
+const joblistingsRoute = require('./employers/joblistings.route')
+const job_interactionRoute = require('./jobseekers/job_interaction.route')
+    //chats
+const conversationRoute = require('./chats/conversation.route')
+const messageRoute = require('./chats/message.route')
+
+    //admins
+const verificationRoute = require('./admins/verification_request.route')
+const adminRoute = require('./admins/admin.route')
+
+
+//OTP Routes
+router.use('/api/otp', OTPRoute)
+//Jobseeekers Routes
+router.use('/api/jobseekers',jobseekersRoute)
+//Employers Routes
+router.use('/api/employers',employersRoute)
+//imageKit Routes
+router.use('/api/employers/imagekit', imagekitRoute)
+//Joblistings Routes
+router.use('/api/joblistings',joblistingsRoute)
+//Applications Routes
+router.use('/api/applications', applicationsRoute)
+//Job interaction Routes
+router.use('/api/jobinteraction', job_interactionRoute)
+//Conversation Routes
+router.use('/api/conversation', conversationRoute)
+//Message Routes
+router.use('/api/message', messageRoute)
+
+//Admin controls
+router.use('/api/admins', verificationRoute)
+router.use('/api/admins', adminRoute)
+
+
+
+module.exports = {router}
